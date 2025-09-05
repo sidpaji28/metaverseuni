@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+.vr-button {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  font-weight: 600;
+}
+
+.vr-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}

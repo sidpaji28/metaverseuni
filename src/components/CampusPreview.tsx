@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import VirtualCampus from './3d/VirtualCampus';
 
 const CampusPreview = () => {
+  const [showVirtualTour, setShowVirtualTour] = useState(false);
+
+  const handleTourClick = () => {
+    setShowVirtualTour(true);
+  };
+
   return (
     <section id="campus" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -60,26 +68,37 @@ const CampusPreview = () => {
               </CardContent>
             </Card>
             
-            <Button className="bg-primary text-primary-foreground glow-primary hover:glow-secondary w-full">
+            <Button 
+              className="bg-primary text-primary-foreground glow-primary hover:glow-secondary w-full"
+              onClick={handleTourClick}
+            >
               Take Virtual Tour
             </Button>
           </div>
           
           <div className="relative">
             <div className="aspect-square bg-nebula rounded-3xl border border-neon p-8 flex items-center justify-center relative overflow-hidden">
-              {/* 3D Campus Visualization Placeholder */}
-              <div className="absolute inset-4 border-2 border-dashed border-neon-primary/30 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4 animate-float">🏛️</div>
-                  <p className="text-neon-primary font-semibold">3D Campus View</p>
-                  <p className="text-muted-foreground text-sm">Interactive exploration coming soon</p>
-                </div>
-              </div>
-              
-              {/* Floating Elements */}
-              <div className="absolute top-8 right-8 w-4 h-4 bg-neon-primary rounded-full animate-pulse"></div>
-              <div className="absolute bottom-12 left-12 w-3 h-3 bg-neon-secondary rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/3 left-8 w-2 h-2 bg-neon-tertiary rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+              {showVirtualTour ? (
+                <VirtualCampus />
+              ) : (
+                <>
+                  {/* 3D Campus Visualization Placeholder */}
+                  <div className="absolute inset-4 border-2 border-dashed border-neon-primary/30 rounded-2xl flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4 animate-float">🏛️</div>
+                      <p className="text-neon-primary font-semibold">3D Campus View</p>
+                      <p className="text-muted-foreground text-sm">Click "Take Virtual Tour" to explore</p>
+                    </div>
+                  </div>
+                  
+                  {/* Floating Elements */}
+                  <div className="absolute top-8 right-8 w-4 h-4 bg-neon-primary rounded-full animate-pulse"></div>
+                  <div className="absolute bottom-12 left-12 w-3 h-3 bg-neon-secondary rounded-full animate-pulse" 
+                       style={{ animationDelay: '1s' }}></div>
+                  <div className="absolute top-1/3 left-8 w-2 h-2 bg-neon-tertiary rounded-full animate-pulse" 
+                       style={{ animationDelay: '2s' }}></div>
+                </>
+              )}
             </div>
           </div>
         </div>
