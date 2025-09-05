@@ -1,6 +1,19 @@
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthClick = () => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth");
+    }
+  };
+
   return (
     <header className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-neon bg-card/30">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -25,12 +38,30 @@ const Header = () => {
         </nav>
         
         <div className="flex items-center space-x-4">
-          <Button variant="outline" className="border-neon text-neon-primary hover:glow-primary">
-            Sign In
-          </Button>
-          <Button className="bg-primary text-primary-foreground glow-primary hover:glow-secondary">
-            Join the Future
-          </Button>
+          {user ? (
+            <Button 
+              onClick={handleAuthClick}
+              className="bg-primary text-primary-foreground glow-primary hover:glow-secondary"
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <>
+              <Button 
+                variant="outline" 
+                className="border-neon text-neon-primary hover:glow-primary"
+                onClick={handleAuthClick}
+              >
+                Sign In
+              </Button>
+              <Button 
+                className="bg-primary text-primary-foreground glow-primary hover:glow-secondary"
+                onClick={handleAuthClick}
+              >
+                Join the Future
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

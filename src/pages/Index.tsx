@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import GamifiedLearning from "@/components/GamifiedLearning";
+import DynamicGamifiedLearning from "@/components/DynamicGamifiedLearning";
 import CampusPreview from "@/components/CampusPreview";
 
 const Index = () => {
@@ -10,7 +10,7 @@ const Index = () => {
       <Header />
       <Hero />
       <Features />
-      <GamifiedLearning />
+      <DynamicGamifiedLearning />
       <CampusPreview />
     </div>
   );

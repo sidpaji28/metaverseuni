@@ -14,7 +14,252 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      achievements: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          points_required: number
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          name: string
+          points_required?: number
+          type?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          points_required?: number
+          type?: string
+        }
+        Relationships: []
+      }
+      challenges: {
+        Row: {
+          created_at: string
+          description: string
+          difficulty: string
+          duration_days: number
+          end_date: string
+          id: string
+          is_active: boolean
+          max_participants: number | null
+          points_reward: number
+          start_date: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          difficulty?: string
+          duration_days?: number
+          end_date: string
+          id?: string
+          is_active?: boolean
+          max_participants?: number | null
+          points_reward?: number
+          start_date?: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          difficulty?: string
+          duration_days?: number
+          end_date?: string
+          id?: string
+          is_active?: boolean
+          max_participants?: number | null
+          points_reward?: number
+          start_date?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      classes: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          instructor: string | null
+          is_active: boolean
+          name: string
+          schedule_days: string[] | null
+          schedule_time: string | null
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          instructor?: string | null
+          is_active?: boolean
+          name: string
+          schedule_days?: string[] | null
+          schedule_time?: string | null
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          instructor?: string | null
+          is_active?: boolean
+          name?: string
+          schedule_days?: string[] | null
+          schedule_time?: string | null
+          subject?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          current_streak: number
+          display_name: string | null
+          id: string
+          last_activity_date: string | null
+          level: number
+          longest_streak: number
+          points: number
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          id?: string
+          last_activity_date?: string | null
+          level?: number
+          longest_streak?: number
+          points?: number
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          id?: string
+          last_activity_date?: string | null
+          level?: number
+          longest_streak?: number
+          points?: number
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      user_achievements: {
+        Row: {
+          achievement_id: string
+          earned_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          achievement_id: string
+          earned_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          achievement_id?: string
+          earned_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_achievements_achievement_id_fkey"
+            columns: ["achievement_id"]
+            isOneToOne: false
+            referencedRelation: "achievements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_challenges: {
+        Row: {
+          challenge_id: string
+          completed_at: string | null
+          id: string
+          joined_at: string
+          progress: number
+          user_id: string
+        }
+        Insert: {
+          challenge_id: string
+          completed_at?: string | null
+          id?: string
+          joined_at?: string
+          progress?: number
+          user_id: string
+        }
+        Update: {
+          challenge_id?: string
+          completed_at?: string | null
+          id?: string
+          joined_at?: string
+          progress?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_challenges_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_classes: {
+        Row: {
+          class_id: string
+          enrolled_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          class_id: string
+          enrolled_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          class_id?: string
+          enrolled_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_classes_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
